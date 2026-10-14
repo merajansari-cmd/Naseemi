@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naseemi Perfumery — Luxury & Signature Fragrances</title>
+    <meta name="description" content="Handcrafted luxury fragrances — signature perfumes, oud, and attars with worldwide delivery.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FAF8F5; color: #2C2A29; }
+        .luxury-font { font-family: 'Playfair Display', serif; }
+        .modal-active { overflow: hidden !important; }
+        @keyframes popupSlide { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+        .animate-popup { animation: popupSlide 0.4s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-[#FAF8F5] text-[#2C2A29]">
+
+    <!-- Announcement Bar -->
+    <div class="bg-[#2C2A29] text-[#FAF8F5] text-xs text-center py-2.5 tracking-widest uppercase font-light">
+        Complimentary shipping on all orders over $150 &bull; Discover our Signature Collection
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#2C2A29]/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <button onclick="openNavDrawer()" class="md:hidden text-lg"><i class="fas fa-bars"></i></button>
+            <nav class="hidden md:flex space-x-8 text-sm uppercase tracking-wider font-medium">
+                <a href="#shop" class="hover:opacity-60 transition">Shop</a>
+                <a href="#reviews" class="hover:opacity-60 transition">Reviews</a>
+                <a href="#faq" class="hover:opacity-60 transition">FAQ</a>
+                <a href="javascript:void(0)" onclick="openPolicy('about')" class="hover:opacity-60 transition">About Us</a>
+            </nav>
+
+            <div class="text-center">
+                <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="luxury-font text-2xl md:text-3xl font-bold tracking-widest uppercase">
+                    Naseemi
+                </a>
+                <span class="block text-[9px] tracking-[0.3em] uppercase opacity-70">Perfumery</span>
+            </div>
+
+            <div class="flex items-center space-x-5 text-sm uppercase tracking-wider font-medium">
+                <a href="#faq" class="hidden md:inline hover:opacity-60 transition">FAQ</a>
+                <a href="javascript:void(0)" onclick="document.getElementById('productSearch').focus()" class="hover:opacity-60 transition"><i class="fas fa-search"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="drawerBackdrop" onclick="closeNavDrawer()" class="fixed inset-0 bg-black/50 z-50 hidden"></div>
+    <div id="navDrawer" class="fixed top-0 left-0 bottom-0 w-72 max-w-[85vw] bg-[#FAF8F5] z-50 shadow-2xl -translate-x-full transition-transform duration-300 p-6">
+        <div class="flex justify-between items-center mb-8">
+            <span class="luxury-font text-xl uppercase tracking-widest">Menu</span>
+            <button onclick="closeNavDrawer()" class="text-xl"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="space-y-5 text-xs uppercase tracking-widest font-medium">
+            <a href="#shop" onclick="closeNavDrawer()" class="block hover:opacity-60">Shop Collection</a>
+            <a href="#reviews" onclick="closeNavDrawer()" class="block hover:opacity-60">Reviews</a>
+            <a href="#faq" onclick="closeNavDrawer()" class="block hover:opacity-60">FAQ</a>
+            <a href="javascript:void(0)" onclick="openPolicy('about'); closeNavDrawer();" class="block hover:opacity-60">About Us</a>
+            <a href="javascript:void(0)" onclick="openPolicy('shipping'); closeNavDrawer();" class="block hover:opacity-60">Shipping & Returns</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative bg-[#2C2A29] text-[#FAF8F5] py-24 px-4 text-center">
+        <div class="max-w-3xl mx-auto space-y-5">
+            <span class="text-xs uppercase tracking-[0.4em] opacity-80 block">Artisanal Scents</span>
+            <h1 class="luxury-font text-4xl md:text-6xl font-normal tracking-wide">The Essence of Pure Elegance</h1>
+            <p class="text-sm md:text-base tracking-widest opacity-80 uppercase max-w-xl mx-auto font-light">Handcrafted luxury fragrances designed to leave an unforgettable trace.</p>
+            <div class="pt-4">
+                <a href="#shop" class="inline-block bg-[#FAF8F5] text-[#2C2A29] px-8 py-3.5 text-xs uppercase tracking-widest font-semibold hover:bg-opacity-90 transition">Explore Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search / Category bar -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+        <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+            <input type="text" id="productSearch" onkeyup="searchProducts()" placeholder="Search fragrances..." class="w-full sm:w-72 bg-transparent border border-[#2C2A29]/20 px-4 py-2.5 text-xs tracking-widest uppercase focus:outline-none focus:border-[#2C2A29]">
+            <div class="flex gap-2 overflow-x-auto">
+                <button onclick="filterCategory('all')" id="btn-all" class="category-btn whitespace-nowrap text-xs uppercase tracking-widest px-5 py-2.5 border border-[#2C2A29] bg-[#2C2A29] text-[#FAF8F5]">All</button>
+                <button onclick="filterCategory('eau-de-parfum')" id="btn-eau-de-parfum" class="category-btn whitespace-nowrap text-xs uppercase tracking-widest px-5 py-2.5 border border-[#2C2A29]/30">Eau de Parfum</button>
+                <button onclick="filterCategory('oud')" id="btn-oud" class="category-btn whitespace-nowrap text-xs uppercase tracking-widest px-5 py-2.5 border border-[#2C2A29]/30">Oud & Attars</button>
+                <button onclick="filterCategory('extrait')" id="btn-extrait" class="category-btn whitespace-nowrap text-xs uppercase tracking-widest px-5 py-2.5 border border-[#2C2A29]/30">Extrait</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="max-w-7xl mx-4 lg:mx-auto p-5 bg-[#2C2A29] border border-[#2C2A29] rounded-2xl my-6 hidden shadow-xl text-[#FAF8F5]">
+        <div class="flex justify-between items-center mb-6 border-b border-[#FAF8F5]/20 pb-4">
+            <h2 class="text-base font-bold tracking-wide flex items-center"><i class="fas fa-sliders mr-2"></i>Naseemi Admin Console</h2>
+            <div class="flex items-center gap-2">
+                <button onclick="adminLogout()" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-4 py-1.5 rounded-xl text-xs transition"><i class="fas fa-sign-out-alt mr-1"></i> Logout</button>
+                <button onclick="closeAdminPanel()" class="bg-[#FAF8F5]/10 hover:bg-[#FAF8F5]/20 font-semibold px-4 py-1.5 rounded-xl text-xs border border-[#FAF8F5]/20 transition">Hide Console</button>
+            </div>
+        </div>
+
+        <h3 class="text-xs font-bold uppercase tracking-wider mb-3 opacity-80"><i class="fas fa-plus-circle mr-1"></i> Add New Fragrance</h3>
+        <form id="addProductForm" onsubmit="handleCreateProduct(event)" class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-black/20 p-5 rounded-xl border border-[#FAF8F5]/10 text-xs mb-6">
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">Unique ID:</label>
+                <input type="text" id="p_id" required placeholder="royal_oud" class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">Product Title:</label>
+                <input type="text" id="p_title" required placeholder="Naseemi Royal Oud EDP" class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">Category:</label>
+                <select id="p_category" class="w-full bg-[#2C2A29] border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none">
+                    <option value="eau-de-parfum">Eau de Parfum</option>
+                    <option value="oud">Oud & Attars</option>
+                    <option value="extrait">Extrait</option>
+                </select>
+            </div>
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">Image URL (optional):</label>
+                <input type="url" id="p_image_url" placeholder="https://..." class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">Subtitle:</label>
+                <input type="text" id="p_sub" required placeholder="100ml / Eau de Parfum" class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">Price:</label>
+                <input type="text" id="p_price" required placeholder="$240.00" class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">Cut-out Price:</label>
+                <input type="text" id="p_cut" placeholder="$300.00" class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">Badge (optional):</label>
+                <input type="text" id="p_badge" placeholder="Bestseller" class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div class="md:col-span-4">
+                <label class="block font-medium mb-1.5 opacity-70">Description:</label>
+                <textarea id="p_desc" rows="2" placeholder="Notes, accords, story of the scent..." class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]"></textarea>
+            </div>
+            <div class="md:col-span-4 flex justify-end pt-2">
+                <button type="submit" class="bg-[#FAF8F5] text-[#2C2A29] font-bold px-6 py-3 rounded-xl shadow transition hover:bg-opacity-90"><i class="fas fa-plus-circle mr-1.5"></i> Add Fragrance</button>
+            </div>
+        </form>
+
+        <h3 class="text-xs font-bold uppercase tracking-wider mb-3 opacity-80"><i class="fas fa-gear mr-1"></i> Footer & Contact Settings</h3>
+        <form id="footerSettingsForm" onsubmit="saveFooterSettings(event)" class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-black/20 p-5 rounded-xl border border-[#FAF8F5]/10 text-xs">
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">Support Email:</label>
+                <input type="email" id="admin_email" required class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">WhatsApp Display Number:</label>
+                <input type="text" id="admin_phone" required class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div>
+                <label class="block font-medium mb-1.5 opacity-70">WhatsApp Chat Link (https://wa.me/...):</label>
+                <input type="text" id="admin_chat_link" required placeholder="https://wa.me/9779815892786" class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div class="md:col-span-3">
+                <label class="block font-medium mb-1.5 opacity-70">Brand Description:</label>
+                <input type="text" id="admin_desc" required class="w-full bg-[#FAF8F5]/5 border border-[#FAF8F5]/20 p-2.5 rounded-lg focus:outline-none focus:border-[#FAF8F5]">
+            </div>
+            <div class="md:col-span-3 flex justify-end pt-2">
+                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl shadow transition"><i class="fas fa-save mr-1.5"></i> Save Settings</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Product Grid -->
+    <main id="shop" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex justify-between items-center mb-10 border-b border-[#2C2A29]/10 pb-4">
+            <span id="productCountLabel" class="text-xs tracking-widest uppercase font-medium">Signature Line</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="productsGrid"></div>
+    </main>
+
+    <!-- Reviews -->
+    <section id="reviews" class="max-w-6xl mx-auto px-4 py-16 border-t border-[#2C2A29]/10">
+        <div class="text-center mb-10">
+            <span class="text-xs tracking-widest uppercase opacity-70 block mb-1">Loved By Our Clients</span>
+            <h2 class="luxury-font text-2xl md:text-3xl">Client Reviews</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="border border-[#2C2A29]/10 p-5">
+                <div class="text-amber-600 text-xs mb-2">★★★★★</div>
+                <p class="text-xs leading-relaxed opacity-80 mb-3">"The Royal Oud lasts all day and the scent is absolutely unique. Packaging felt genuinely luxurious."</p>
+                <p class="text-[11px] font-semibold uppercase tracking-wider">— Aisha K.</p>
+            </div>
+            <div class="border border-[#2C2A29]/10 p-5">
+                <div class="text-amber-600 text-xs mb-2">★★★★★</div>
+                <p class="text-xs leading-relaxed opacity-80 mb-3">"Amber Extrait is my new signature scent. Compliments everywhere I go."</p>
+                <p class="text-[11px] font-semibold uppercase tracking-wider">— Daniel R.</p>
+            </div>
+            <div class="border border-[#2C2A29]/10 p-5">
+                <div class="text-amber-600 text-xs mb-2">★★★★★</div>
+                <p class="text-xs leading-relaxed opacity-80 mb-3">"Ordered via WhatsApp, support was warm and delivery was fast. Will order again."</p>
+                <p class="text-[11px] font-semibold uppercase tracking-wider">— Maria S.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="max-w-4xl mx-auto px-4 py-16 border-t border-[#2C2A29]/10">
+        <div class="text-center mb-10">
+            <span class="text-xs tracking-widest uppercase opacity-70 block mb-1">Got Questions?</span>
+            <h2 class="luxury-font text-2xl md:text-3xl">Frequently Asked Questions</h2>
+        </div>
+        <div class="space-y-3">
+            <div class="border border-[#2C2A29]/10 p-4">
+                <button onclick="toggleFaq('faq-1')" class="w-full text-left font-medium text-xs uppercase tracking-wider flex justify-between items-center">
+                    <span>How long does delivery take?</span><i class="fas fa-chevron-down text-[10px] opacity-50"></i>
+                </button>
+                <div id="faq-1" class="hidden mt-3 pt-3 border-t border-[#2C2A29]/10 text-xs opacity-70 leading-relaxed">Orders are typically dispatched within 1-2 business days, with delivery times varying by destination.</div>
+            </div>
+            <div class="border border-[#2C2A29]/10 p-4">
+                <button onclick="toggleFaq('faq-2')" class="w-full text-left font-medium text-xs uppercase tracking-wider flex justify-between items-center">
+                    <span>Are your fragrances authentic and handmade?</span><i class="fas fa-chevron-down text-[10px] opacity-50"></i>
+                </button>
+                <div id="faq-2" class="hidden mt-3 pt-3 border-t border-[#2C2A29]/10 text-xs opacity-70 leading-relaxed">Yes, every fragrance is blended in small batches using carefully sourced ingredients.</div>
+            </div>
+            <div class="border border-[#2C2A29]/10 p-4">
+                <button onclick="toggleFaq('faq-3')" class="w-full text-left font-medium text-xs uppercase tracking-wider flex justify-between items-center">
+                    <span>How do I place an order?</span><i class="fas fa-chevron-down text-[10px] opacity-50"></i>
+                </button>
+                <div id="faq-3" class="hidden mt-3 pt-3 border-t border-[#2C2A29]/10 text-xs opacity-70 leading-relaxed">Select a fragrance, choose your size, and tap "Order via WhatsApp" — our team will confirm payment and shipping details with you directly.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="productModal" style="display:none; z-index: 9999;" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#FAF8F5] max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative flex flex-col md:flex-row border border-[#2C2A29]/10">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-[#2C2A29] text-sm z-50 bg-[#FAF8F5] border border-[#2C2A29]/20 p-2 h-9 w-9 flex items-center justify-center rounded-full">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="w-full md:w-1/2 p-6 md:p-10">
+                <div id="modalVisualBox" class="bg-[#F0ECE1] aspect-square flex flex-col items-center justify-center relative overflow-hidden mb-4 border border-[#2C2A29]/5">
+                    <img id="modalProductImg" src="" alt="Product" class="absolute inset-0 w-full h-full object-contain hidden">
+                    <div id="fallbackVisual" class="text-[#2C2A29]/30 text-6xl"></div>
+                    <span id="modalVisualLabel" class="luxury-font italic text-stone-400 mt-3 text-sm"></span>
+                </div>
+                <div id="adminImageControlBox" class="mb-3 bg-black/5 p-2.5 border border-[#2C2A29]/10 hidden space-y-2">
+                    <div class="flex items-center gap-2">
+                        <input type="url" id="quick_modal_img_url" placeholder="Paste Image URL here..." class="w-full bg-[#FAF8F5] border border-[#2C2A29]/20 px-3 py-1.5 text-xs focus:outline-none">
+                        <button onclick="updateModalImageDirect()" class="bg-[#2C2A29] text-[#FAF8F5] font-bold text-xs px-3 py-1.5 shrink-0"><i class="fas fa-plus mr-1"></i>Set</button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input type="file" id="quick_modal_img_file" accept="image/*" class="w-full bg-[#FAF8F5] border border-[#2C2A29]/20 px-2 py-1.5 text-[11px] focus:outline-none">
+                        <button onclick="uploadModalImageFile()" id="upload_img_btn" class="bg-emerald-700 text-white font-bold text-xs px-3 py-1.5 shrink-0"><i class="fas fa-upload mr-1"></i><span id="upload_img_btn_text">Upload</span></button>
+                    </div>
+                </div>
+
+                <div id="adminPriceControlBox" class="mb-4 bg-black/5 p-2.5 border border-[#2C2A29]/10 hidden">
+                    <p class="text-[10px] font-bold uppercase tracking-wider mb-2 opacity-60">Admin Quick Price Edit:</p>
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="quick_modal_real_price" placeholder="Price" class="w-1/2 bg-[#FAF8F5] border border-[#2C2A29]/20 px-2.5 py-1.5 text-xs focus:outline-none">
+                        <input type="text" id="quick_modal_cut_price" placeholder="Cut Price" class="w-1/2 bg-[#FAF8F5] border border-[#2C2A29]/20 px-2.5 py-1.5 text-xs focus:outline-none">
+                        <button onclick="updateModalPriceDirect()" class="bg-emerald-700 text-white font-bold text-xs px-3 py-1.5 shrink-0"><i class="fas fa-save mr-1"></i>Save</button>
+                    </div>
+                </div>
+
+                <div id="adminDescControlBox" class="mb-4 bg-amber-900/5 p-2.5 border border-amber-900/20 hidden">
+                    <p class="text-[10px] font-bold uppercase tracking-wider mb-1.5 opacity-60">Admin Description Edit:</p>
+                    <textarea id="quick_modal_desc" rows="3" class="w-full bg-[#FAF8F5] border border-amber-900/20 p-2 text-xs focus:outline-none mb-2"></textarea>
+                    <button onclick="updateModalDescriptionDirect()" class="bg-amber-800 text-white font-bold text-xs px-3 py-1.5 w-full"><i class="fas fa-edit mr-1"></i>Save Description</button>
+                </div>
+
+                <h2 id="modalProductTitle" class="luxury-font text-2xl mb-3"></h2>
+                <div id="tab-desc-content" class="text-xs opacity-70 leading-relaxed"></div>
+            </div>
+
+            <div class="w-full md:w-1/2 p-6 md:p-10 bg-[#F0ECE1]/40 flex flex-col justify-between">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest font-medium mb-2.5">Select Size:</label>
+                    <div id="licenseSelectorContainer" class="space-y-2.5 mb-4 max-h-[260px] overflow-y-auto pr-1"></div>
+
+                    <div id="adminVariantControlBox" class="mb-5 bg-black/5 p-3 border border-[#2C2A29]/10 hidden">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-[10px] font-bold uppercase tracking-wider opacity-60">Admin Size Options:</span>
+                            <button onclick="removeSelectedVariant()" class="bg-rose-700 text-white font-bold text-[10px] uppercase px-2.5 py-1"><i class="fas fa-trash mr-1"></i>Remove</button>
+                        </div>
+                        <div class="space-y-2 pt-2 border-t border-[#2C2A29]/10">
+                            <p class="text-[10px] font-semibold opacity-60">Add New Size:</p>
+                            <input type="text" id="v_new_name" placeholder="Size name e.g. 50ml" class="w-full bg-[#FAF8F5] border border-[#2C2A29]/20 p-2 text-xs focus:outline-none">
+                            <input type="text" id="v_new_sub" placeholder="Subtitle e.g. Travel Size" class="w-full bg-[#FAF8F5] border border-[#2C2A29]/20 p-2 text-xs focus:outline-none">
+                            <textarea id="v_new_desc" rows="2" placeholder="Description for this size..." class="w-full bg-[#FAF8F5] border border-[#2C2A29]/20 p-2 text-xs focus:outline-none"></textarea>
+                            <div class="flex gap-2">
+                                <input type="text" id="v_new_real" placeholder="Price e.g. $150" class="w-1/2 bg-[#FAF8F5] border border-[#2C2A29]/20 p-2 text-xs focus:outline-none">
+                                <input type="text" id="v_new_cut" placeholder="Cut Price e.g. $200" class="w-1/2 bg-[#FAF8F5] border border-[#2C2A29]/20 p-2 text-xs focus:outline-none">
+                            </div>
+                            <button onclick="addNewVariantToProduct()" class="w-full bg-[#2C2A29] text-[#FAF8F5] font-bold text-xs py-2 mt-1"><i class="fas fa-plus-circle mr-1"></i>Add Size</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 bg-[#FAF8F5] border border-[#2C2A29]/10 p-5">
+                        <p class="text-[11px] opacity-50 font-bold uppercase tracking-wider mb-1">Price</p>
+                        <div class="flex items-baseline space-x-2">
+                            <span id="modalRealPrice" class="text-2xl luxury-font"></span>
+                            <span id="modalCutPrice" class="text-sm line-through opacity-40"></span>
+                        </div>
+                    </div>
+                </div>
+                <a id="checkoutWhatsappLink" href="#" target="_blank" class="w-full bg-[#25D366] hover:bg-[#1ebe5a] text-white font-bold text-xs py-3.5 transition flex items-center justify-center tracking-widest uppercase">
+                    <i class="fab fa-whatsapp mr-2 text-base"></i> Order via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Policy Modal -->
+    <div id="policyModal" style="display:none; z-index: 9999;" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#FAF8F5] max-w-3xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative p-8 border border-[#2C2A29]/10">
+            <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-sm bg-[#FAF8F5] border border-[#2C2A29]/20 p-2 h-9 w-9 flex items-center justify-center rounded-full"><i class="fas fa-times"></i></button>
+            <h2 id="policyModalTitle" class="luxury-font text-2xl mb-4 border-b border-[#2C2A29]/10 pb-3"></h2>
+            <div id="policyModalBody" class="text-xs opacity-80 leading-relaxed"></div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" style="display:none; z-index: 9999;" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#FAF8F5] max-w-sm w-full shadow-2xl relative p-6 border border-[#2C2A29]/10">
+            <button onclick="closeAdminLoginModal()" class="absolute top-3 right-3 text-sm bg-black/5 p-2 h-8 w-8 flex items-center justify-center rounded-full"><i class="fas fa-times"></i></button>
+            <h2 class="luxury-font text-lg mb-1"><i class="fas fa-lock mr-1.5"></i> Admin Login</h2>
+            <p class="text-xs opacity-60 mb-4">Secure console access.</p>
+            <div class="space-y-3">
+                <input type="email" id="admin_login_email" placeholder="Admin Email" class="w-full bg-black/5 border border-[#2C2A29]/20 p-2.5 text-sm focus:outline-none">
+                <input type="password" id="admin_login_password" placeholder="Password" class="w-full bg-black/5 border border-[#2C2A29]/20 p-2.5 text-sm focus:outline-none">
+                <p id="admin_login_error" class="text-xs text-rose-700 font-semibold hidden"></p>
+                <button id="admin_login_btn" onclick="submitAdminLogin()" class="w-full bg-[#2C2A29] text-[#FAF8F5] font-bold text-xs py-3 flex items-center justify-center"><i class="fas fa-sign-in-alt mr-1"></i> <span id="admin_login_btn_text">Login</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#2C2A29] text-[#FAF8F5] py-16 px-4 mt-10 border-t border-[#FAF8F5]/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h4 class="luxury-font text-2xl tracking-wider mb-4">Naseemi Perfumery</h4>
+                <p id="display_desc" class="text-xs opacity-70 leading-relaxed uppercase tracking-wider">Crafting sublime olfactory memories with rare ingredients and timeless craftsmanship.</p>
+            </div>
+            <div>
+                <h4 class="text-xs uppercase tracking-[0.2em] mb-4 font-semibold">Customer Care</h4>
+                <ul class="space-y-2 text-xs opacity-70 tracking-wider">
+                    <li><a href="javascript:void(0)" onclick="openPolicy('shipping')" class="hover:underline">Shipping & Returns</a></li>
+                    <li><a href="javascript:void(0)" onclick="openPolicy('policy')" class="hover:underline">Store Policy</a></li>
+                    <li><a href="mailto:" id="display_email_link" class="hover:underline"><span id="display_email"></span></a></li>
+                    <li><a href="#" id="display_phone_link" target="_blank" class="hover:underline">WhatsApp: <span id="display_phone"></span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs uppercase tracking-[0.2em] mb-4 font-semibold">Payment Methods</h4>
+                <div class="flex flex-wrap items-center gap-2.5 mb-5">
+                    <div class="w-9 h-9 rounded-full bg-[#FAF8F5] flex items-center justify-center" title="PayPal"><i class="fab fa-paypal text-[#003087] text-sm"></i></div>
+                    <div class="w-9 h-9 rounded-full bg-[#FAF8F5] flex items-center justify-center" title="Visa"><i class="fab fa-cc-visa text-[#1A1F71] text-sm"></i></div>
+                    <div class="w-9 h-9 rounded-full bg-[#FAF8F5] flex items-center justify-center" title="MasterCard"><i class="fab fa-cc-mastercard text-[#EB001B] text-sm"></i></div>
+                    <div class="w-9 h-9 rounded-full bg-[#FAF8F5] flex items-center justify-center" title="American Express"><i class="fab fa-cc-amex text-[#2E77BC] text-sm"></i></div>
+                </div>
+                <h4 class="text-xs uppercase tracking-[0.2em] mb-3 font-semibold">Join The Inner Circle</h4>
+                <div class="flex">
+                    <input type="email" placeholder="Enter your email" class="bg-transparent border border-[#FAF8F5]/30 px-4 py-2.5 text-xs w-full focus:outline-none placeholder-[#FAF8F5]/40">
+                    <button class="bg-[#FAF8F5] text-[#2C2A29] px-6 text-xs uppercase tracking-widest font-semibold">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 pt-8 mt-8 border-t border-[#FAF8F5]/10 text-center">
+            <span class="text-[10px] tracking-wider uppercase font-bold opacity-50 cursor-default" onclick="toggleAdminPanelDirect()">&copy; 2026 Naseemi Perfumery</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        window.onerror = function (message, source, lineno) {
+            console.error("JS ERROR:", message, "Line:", lineno);
+            return false;
+        };
+        window.addEventListener('unhandledrejection', e => console.error("PROMISE ERROR:", e.reason));
+
+        const initialProducts = [
+            {
+                id: "royal_oud",
+                title: "Naseemi Royal Oud EDP",
+                category: "eau-de-parfum",
+                imageUrl: "",
+                icon: "fa-solid fa-flask",
+                sub: "100ml / Eau de Parfum",
+                price: "$240.00",
+                cutPrice: "$300.00",
+                badge: "Bestseller",
+                description: "A rich, resinous oud blended with warm amber and a whisper of rose — deep, smoky, and unmistakably regal. Perfect for evening wear.",
+                variants: [
+                    { id: "royal_oud_50", name: "50ml", sub: "Travel Size", desc: "A rich, resinous oud blended with warm amber and a whisper of rose.", price: "$150.00", cutPrice: "$190.00" },
+                    { id: "royal_oud_100", name: "100ml", sub: "Full Size", desc: "A rich, resinous oud blended with warm amber and a whisper of rose — deep, smoky, and unmistakably regal.", price: "$240.00", cutPrice: "$300.00" }
+                ]
+            },
+            {
+                id: "amber_extrait",
+                title: "Amber Naseemi Extrait",
+                category: "extrait",
+                imageUrl: "",
+                icon: "fa-solid fa-flask",
+                sub: "75ml / Extrait de Parfum",
+                price: "$290.00",
+                cutPrice: "$340.00",
+                badge: "Limited",
+                description: "An opulent extrait concentration built around golden amber, vanilla, and warm spice. Long-lasting and intensely wearable.",
+                variants: [
+                    { id: "amber_extrait_75", name: "75ml", sub: "Extrait de Parfum", desc: "An opulent extrait concentration built around golden amber, vanilla, and warm spice.", price: "$290.00", cutPrice: "$340.00" }
+                ]
+            },
+            {
+                id: "white_musk",
+                title: "Naseemi White Musk",
+                category: "eau-de-parfum",
+                imageUrl: "",
+                icon: "fa-solid fa-flask",
+                sub: "100ml / Eau de Parfum",
+                price: "$210.00",
+                cutPrice: "$260.00",
+                badge: "",
+                description: "A clean, powdery musk layered with soft florals — light enough for daily wear, elegant enough for any occasion.",
+                variants: [
+                    { id: "white_musk_50", name: "50ml", sub: "Travel Size", desc: "A clean, powdery musk layered with soft florals.", price: "$135.00", cutPrice: "$165.00" },
+                    { id: "white_musk_100", name: "100ml", sub: "Full Size", desc: "A clean, powdery musk layered with soft florals — light enough for daily wear, elegant enough for any occasion.", price: "$210.00", cutPrice: "$260.00" }
+                ]
+            },
+            {
+                id: "saffron_attar",
+                title: "Naseemi Saffron Attar",
+                category: "oud",
+                imageUrl: "",
+                icon: "fa-solid fa-droplet",
+                sub: "12ml / Concentrated Attar Oil",
+                price: "$95.00",
+                cutPrice: "$120.00",
+                badge: "New",
+                description: "A concentrated oil-based attar — saffron, sandalwood, and a touch of oud. Alcohol-free and deeply traditional.",
+                variants: [
+                    { id: "saffron_attar_12", name: "12ml", sub: "Concentrated Attar Oil", desc: "Saffron, sandalwood, and a touch of oud. Alcohol-free and deeply traditional.", price: "$95.00", cutPrice: "$120.00" }
+                ]
+            }
+        ];
+
+        let products = initialProducts.slice();
+        let activeCategory = 'all';
+        let currentModalProductId = null;
+        let selectedVariantId = null;
+        let isAdminLoggedIn = false;
+        let sb = null;
+
+        let storeSettings = {
+            email: "support@naseemi.com",
+            phone: "+977 981-5892786",
+            chatLink: "https://wa.me/9779815892786",
+            desc: "Crafting sublime olfactory memories with rare ingredients and timeless craftsmanship."
+        };
+
+        // ===== FILL THESE IN with your Supabase project details =====
+        const SUPABASE_URL = "https://umbekcbnxafegkebcczt.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_c0_5S7vkmgNTABn-ZS4P3g_FApV-9qe";
+
+        function initSupabase() {
+            try {
+                if (!window.supabase || typeof window.supabase.createClient !== 'function') {
+                    console.warn("[Naseemi] Supabase SDK not loaded — running in local mode.");
+                    return null;
+                }
+                if (SUPABASE_URL.includes("YOUR_SUPABASE")) {
+                    console.warn("[Naseemi] Supabase not configured yet — running in local mode.");
+                    return null;
+                }
+                return window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            } catch (e) {
+                console.error("[Naseemi] Supabase init fail:", e);
+                return null;
+            }
+        }
+
+        async function loadProducts() {
+            if (!sb) return;
+            try {
+                const { data: rows, error } = await sb.from('products').select('*');
+                if (error) { console.error("[Naseemi] products load error:", error.message); return; }
+
+                const mergedMap = new Map();
+                initialProducts.forEach(p => mergedMap.set(p.id, JSON.parse(JSON.stringify(p))));
+                if (rows && rows.length > 0) {
+                    rows.forEach(r => {
+                        if (!r || !r.data) return;
+                        const remoteProd = r.data;
+                        if (!Array.isArray(remoteProd.variants)) remoteProd.variants = [];
+                        mergedMap.set(remoteProd.id, remoteProd);
+                    });
+                }
+                products = Array.from(mergedMap.values());
+                renderProducts(document.getElementById('productSearch')?.value || '');
+            } catch (e) {
+                console.error("[Naseemi] loadProducts exception:", e);
+            }
+        }
+
+        async function loadStoreSettings() {
+            if (!sb) return;
+            try {
+                const { data: row, error } = await sb.from('store_settings').select('*').eq('id', 'main').maybeSingle();
+                if (error) { console.error("[Naseemi] settings load error:", error.message); return; }
+                if (row && row.data) {
+                    storeSettings = Object.assign({}, storeSettings, row.data);
+                    applyStoreSettingsUI();
+                }
+            } catch (e) {
+                console.error("[Naseemi] loadStoreSettings exception:", e);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            products = initialProducts.slice();
+            renderProducts();
+            applyStoreSettingsUI();
+
+            sb = initSupabase();
+            if (!sb) return;
+
+            sb.auth.onAuthStateChange((event, session) => {
+                isAdminLoggedIn = !!session;
+                if (isAdminLoggedIn) { closeAdminLoginModal(); showAdminElements(); }
+                else { hideAdminElements(); }
+            });
+
+            sb.auth.getSession().then(({ data: { session } }) => {
+                isAdminLoggedIn = !!session;
+                if (isAdminLoggedIn) showAdminElements();
+            }).catch(e => console.error(e));
+
+            loadProducts();
+            loadStoreSettings();
+
+            try {
+                sb.channel('products-changes')
+                    .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, () => loadProducts())
+                    .subscribe();
+                sb.channel('settings-changes')
+                    .on('postgres_changes', { event: '*', schema: 'public', table: 'store_settings' }, () => loadStoreSettings())
+                    .subscribe();
+            } catch (e) {
+                console.error("[Naseemi] realtime subscribe fail:", e);
+            }
+        });
+
+        function openNavDrawer() {
+            document.getElementById('navDrawer').classList.remove('-translate-x-full');
+            document.getElementById('drawerBackdrop').classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+        function closeNavDrawer() {
+            document.getElementById('navDrawer').classList.add('-translate-x-full');
+            document.getElementById('drawerBackdrop').classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            return String(text)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        function formatTextWithLinks(text) {
+            if (!text) return '';
+            const safeText = escapeHtml(text);
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            return safeText.replace(urlRegex, function (url) {
+                return `<a href="${url}" target="_blank" class="underline">${url}</a>`;
+            }).replace(/\n/g, '<br>');
+        }
+
+        function renderProducts(filterQuery = '') {
+            const grid = document.getElementById('productsGrid');
+            if (!grid) return;
+
+            if (!Array.isArray(products) || products.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-xs uppercase tracking-widest opacity-50">Loading collection...</div>`;
+                return;
+            }
+
+            grid.innerHTML = '';
+            const q = (filterQuery || '').toLowerCase();
+            const filtered = products.filter(p => {
+                if (!p) return false;
+                const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+                const title = (p.title || '').toLowerCase();
+                const sub = (p.sub || '').toLowerCase();
+                const matchesSearch = title.includes(q) || sub.includes(q);
+                return matchesCategory && matchesSearch;
+            });
+
+            const label = document.getElementById('productCountLabel');
+            if (label) label.innerText = `Signature Line (${filtered.length} Product${filtered.length === 1 ? '' : 's'})`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-xs uppercase tracking-widest opacity-50">No fragrances found.</div>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "group cursor-pointer";
+                card.onclick = () => openProductModal(p.id);
+
+                const safeTitleText = escapeHtml(p.title);
+                const safeSubText = escapeHtml(p.sub);
+                const safeBadgeText = escapeHtml(p.badge);
+
+                const badgeHTML = p.badge
+                    ? `<span class="absolute top-3 left-3 text-[10px] tracking-widest uppercase bg-[#2C2A29] text-[#FAF8F5] px-2.5 py-1 font-medium z-10">${safeBadgeText}</span>`
+                    : '';
+
+                const imageOrVisual = p.imageUrl ?
+                    `<div class="bg-[#F0ECE1] aspect-[4/5] overflow-hidden mb-4 relative flex items-center justify-center border border-[#2C2A29]/5">
+                        ${badgeHTML}
+                        <img src="${escapeHtml(p.imageUrl)}" class="w-full h-full object-contain" alt="${safeTitleText}" onerror="this.remove(); this.nextElementSibling.classList.remove('hidden');">
+                        <div class="fallback-icon-box text-center p-6 text-stone-400 hidden">
+                            <i class="${p.icon || 'fa-solid fa-flask'} text-3xl mb-2"></i>
+                            <div class="luxury-font italic text-sm">${safeTitleText}</div>
+                        </div>
+                     </div>` :
+                    `<div class="bg-[#F0ECE1] aspect-[4/5] overflow-hidden mb-4 relative flex items-center justify-center border border-[#2C2A29]/5">
+                        ${badgeHTML}
+                        <div class="text-center p-6 text-stone-400">
+                            <i class="${p.icon || 'fa-solid fa-flask'} text-3xl mb-2"></i>
+                            <div class="luxury-font italic text-sm">${safeTitleText}</div>
+                        </div>
+                     </div>`;
+
+                const hasVariants = Array.isArray(p.variants) && p.variants.length > 0;
+                const displayPrice = hasVariants ? p.variants[0].price : p.price;
+                const displayCutPrice = hasVariants ? p.variants[0].cutPrice : p.cutPrice;
+
+                card.innerHTML = `
+                    ${imageOrVisual}
+                    <h3 class="luxury-font text-lg font-medium group-hover:opacity-75 transition">${safeTitleText}</h3>
+                    <p class="text-xs tracking-wider opacity-70 mt-1 uppercase">${safeSubText}</p>
+                    <p class="text-sm tracking-wider font-semibold mt-2">${escapeHtml(displayPrice || '')} <span class="line-through opacity-40 font-normal ml-1">${escapeHtml(displayCutPrice || '')}</span></p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.category-btn').forEach(b => {
+                b.className = "category-btn whitespace-nowrap text-xs uppercase tracking-widest px-5 py-2.5 border border-[#2C2A29]/30";
+            });
+            const activeBtn = document.getElementById(`btn-${cat}`);
+            if (activeBtn) activeBtn.className = "category-btn whitespace-nowrap text-xs uppercase tracking-widest px-5 py-2.5 border border-[#2C2A29] bg-[#2C2A29] text-[#FAF8F5]";
+            renderProducts(document.getElementById('productSearch')?.value || '');
+        }
+
+        function searchProducts() {
+            renderProducts(document.getElementById('productSearch').value);
+        }
+
+        function openProductModal(productId) {
+            currentModalProductId = productId;
+            const p = products.find(prod => prod.id === productId);
+            if (!p) return;
+
+            document.getElementById('modalProductTitle').innerText = p.title || '';
+
+            const imgElem = document.getElementById('modalProductImg');
+            const fallbackElem = document.getElementById('fallbackVisual');
+            const labelElem = document.getElementById('modalVisualLabel');
+
+            fallbackElem.innerHTML = `<i class="${p.icon || 'fa-solid fa-flask'}"></i>`;
+            labelElem.innerText = p.title || '';
+
+            if (p.imageUrl) {
+                imgElem.src = p.imageUrl;
+                imgElem.classList.remove('hidden');
+                fallbackElem.classList.add('hidden');
+                labelElem.classList.add('hidden');
+                imgElem.onerror = () => {
+                    imgElem.classList.add('hidden');
+                    fallbackElem.classList.remove('hidden');
+                    labelElem.classList.remove('hidden');
+                };
+            } else {
+                imgElem.classList.add('hidden');
+                fallbackElem.classList.remove('hidden');
+                labelElem.classList.remove('hidden');
+            }
+
+            const container = document.getElementById('licenseSelectorContainer');
+            container.innerHTML = '';
+
+            const hasVariants = Array.isArray(p.variants) && p.variants.length > 0;
+            selectedVariantId = hasVariants ? p.variants[0].id : null;
+
+            if (hasVariants) {
+                p.variants.forEach((v, idx) => {
+                    const isSelected = idx === 0;
+                    const vBox = document.createElement('div');
+                    vBox.id = `variant-card-${v.id}`;
+                    vBox.className = `p-3 border cursor-pointer transition flex justify-between items-center ${isSelected ? 'border-[#2C2A29] bg-[#2C2A29]/5' : 'border-[#2C2A29]/20 bg-transparent hover:border-[#2C2A29]/50'}`;
+                    vBox.onclick = () => selectVariant(v.id);
+                    vBox.innerHTML = `
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider">${escapeHtml(v.name)}</div>
+                            <div class="text-[10px] opacity-60">${escapeHtml(v.sub)}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs font-black">${escapeHtml(v.price)}</div>
+                            <div class="text-[10px] line-through opacity-40">${escapeHtml(v.cutPrice)}</div>
+                        </div>
+                    `;
+                    container.appendChild(vBox);
+                });
+
+                const activeVar = p.variants[0];
+                document.getElementById('tab-desc-content').innerHTML = formatTextWithLinks(activeVar.desc || p.description);
+                document.getElementById('quick_modal_desc').value = activeVar.desc || p.description || '';
+                document.getElementById('quick_modal_real_price').value = activeVar.price;
+                document.getElementById('quick_modal_cut_price').value = activeVar.cutPrice;
+                updatePriceDisplay(activeVar.price, activeVar.cutPrice);
+            } else {
+                document.getElementById('tab-desc-content').innerHTML = formatTextWithLinks(p.description);
+                document.getElementById('quick_modal_desc').value = p.description || '';
+                document.getElementById('quick_modal_real_price').value = p.price;
+                document.getElementById('quick_modal_cut_price').value = p.cutPrice;
+                updatePriceDisplay(p.price, p.cutPrice);
+            }
+
+            updateCheckoutLink(p.title);
+
+            const modal = document.getElementById('productModal');
+            modal.style.display = 'flex';
+            document.body.classList.add('modal-active');
+        }
+
+        function selectVariant(vId) {
+            selectedVariantId = vId;
+            const p = products.find(prod => prod.id === currentModalProductId);
+            if (!p || !Array.isArray(p.variants)) return;
+
+            p.variants.forEach(v => {
+                const card = document.getElementById(`variant-card-${v.id}`);
+                if (!card) return;
+                if (v.id === vId) {
+                    card.className = "p-3 border cursor-pointer transition flex justify-between items-center border-[#2C2A29] bg-[#2C2A29]/5";
+                    updatePriceDisplay(v.price, v.cutPrice);
+                    document.getElementById('quick_modal_real_price').value = v.price;
+                    document.getElementById('quick_modal_cut_price').value = v.cutPrice;
+                    const dynamicDesc = v.desc || p.description;
+                    document.getElementById('tab-desc-content').innerHTML = formatTextWithLinks(dynamicDesc);
+                    document.getElementById('quick_modal_desc').value = dynamicDesc;
+                } else {
+                    card.className = "p-3 border cursor-pointer transition flex justify-between items-center border-[#2C2A29]/20 bg-transparent hover:border-[#2C2A29]/50";
+                }
+            });
+            updateCheckoutLink(p.title);
+        }
+
+        function updatePriceDisplay(real, cut) {
+            document.getElementById('modalRealPrice').innerText = real || '';
+            document.getElementById('modalCutPrice').innerText = cut || '';
+        }
+
+        function updateCheckoutLink(productName) {
+            const p = products.find(prod => prod.id === currentModalProductId);
+            if (!p) return;
+
+            let variantName = "Standard";
+            let price = p.price;
+            if (Array.isArray(p.variants) && p.variants.length > 0) {
+                const selectedVar = p.variants.find(v => v.id === selectedVariantId) || p.variants[0];
+                variantName = selectedVar.name;
+                price = selectedVar.price;
+            }
+
+            const orderId = 'NSM-' + Math.floor(100000 + Math.random() * 900000);
+            const rawMessage = `Hello Naseemi, I would like to order:\n\nOrder Reference: #${orderId}\nFragrance: ${p.title}\nSize: ${variantName}\nPrice: ${price}\n\nPlease confirm availability and payment details.`;
+
+            const encodedMessage = encodeURIComponent(rawMessage);
+            const waBtn = document.getElementById('checkoutWhatsappLink');
+            if (waBtn) {
+                const baseUrl = storeSettings.chatLink || "https://wa.me/9779815892786";
+                waBtn.href = `${baseUrl}?text=${encodedMessage}`;
+            }
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+            document.body.classList.remove('modal-active');
+        }
+
+        function toggleFaq(id) {
+            const elem = document.getElementById(id);
+            if (elem) elem.classList.toggle('hidden');
+        }
+
+        const policyData = {
+            about: { title: "About Naseemi Perfumery", body: "Naseemi Perfumery crafts small-batch, artisanal fragrances using rare ingredients sourced from around the world — from Omani frankincense to Indian sandalwood. Every bottle is blended by hand." },
+            shipping: { title: "Shipping & Returns", body: "Orders are dispatched within 1-2 business days. Due to the nature of fragrance products, opened bottles cannot be returned, but we offer replacements for any item damaged in transit." },
+            policy: { title: "Store Policy", body: "All fragrances are 100% authentic, blended in-house. For any concerns about your order, please reach out via WhatsApp or email and our team will assist you promptly." }
+        };
+
+        function openPolicy(key) {
+            const item = policyData[key];
+            if (!item) return;
+            document.getElementById('policyModalTitle').innerText = item.title;
+            document.getElementById('policyModalBody').innerText = item.body;
+            document.getElementById('policyModal').style.display = 'flex';
+            document.body.classList.add('modal-active');
+        }
+        function closePolicyModal() {
+            document.getElementById('policyModal').style.display = 'none';
+            document.body.classList.remove('modal-active');
+        }
+
+        function toggleAdminPanelDirect() {
+            if (!isAdminLoggedIn) triggerAdminLogin();
+            else document.getElementById('adminPanel').classList.toggle('hidden');
+        }
+        function triggerAdminLogin() {
+            document.getElementById('admin_login_error').classList.add('hidden');
+            document.getElementById('admin_login_email').value = '';
+            document.getElementById('admin_login_password').value = '';
+            document.getElementById('adminLoginModal').style.display = 'flex';
+            document.body.classList.add('modal-active');
+        }
+        function closeAdminLoginModal() {
+            document.getElementById('adminLoginModal').style.display = 'none';
+            document.body.classList.remove('modal-active');
+        }
+
+        async function submitAdminLogin() {
+            if (!sb) { alert("Supabase connect nahi hai. Pehle Supabase URL/key file mein daalein."); return; }
+            const email = document.getElementById('admin_login_email').value.trim();
+            const password = document.getElementById('admin_login_password').value;
+            const errorEl = document.getElementById('admin_login_error');
+            const btn = document.getElementById('admin_login_btn');
+            const btnText = document.getElementById('admin_login_btn_text');
+            errorEl.classList.add('hidden');
+
+            if (!email || !password) {
+                errorEl.textContent = "Email aur password dono bharein.";
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            btn.disabled = true;
+            btnText.textContent = "Logging in...";
+            const { error } = await sb.auth.signInWithPassword({ email, password });
+            btn.disabled = false;
+            btnText.textContent = "Login";
+
+            if (error) {
+                errorEl.textContent = "Login failed: " + error.message;
+                errorEl.classList.remove('hidden');
+            }
+        }
+
+        async function adminLogout() {
+            if (sb) await sb.auth.signOut();
+            document.getElementById('adminPanel').classList.add('hidden');
+        }
+
+        function hideAdminElements() {
+            ['adminPanel','adminImageControlBox','adminPriceControlBox','adminVariantControlBox','adminDescControlBox']
+                .forEach(id => document.getElementById(id)?.classList.add('hidden'));
+        }
+        function showAdminElements() {
+            ['adminPanel','adminImageControlBox','adminPriceControlBox','adminVariantControlBox','adminDescControlBox']
+                .forEach(id => document.getElementById(id)?.classList.remove('hidden'));
+            document.getElementById('admin_email').value = storeSettings.email;
+            document.getElementById('admin_phone').value = storeSettings.phone;
+            document.getElementById('admin_chat_link').value = storeSettings.chatLink;
+            document.getElementById('admin_desc').value = storeSettings.desc;
+        }
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').classList.add('hidden');
+        }
+
+        async function handleCreateProduct(e) {
+            e.preventDefault();
+            if (!sb) { alert("Supabase connect nahi hai."); return; }
+            const id = document.getElementById('p_id').value.trim();
+            if (products.some(prod => prod.id === id)) {
+                alert("Error: Ye Unique ID pehle se maujood hai!");
+                return;
+            }
+
+            const title = document.getElementById('p_title').value;
+            const category = document.getElementById('p_category').value;
+            const imageUrl = document.getElementById('p_image_url').value;
+            const sub = document.getElementById('p_sub').value;
+            const price = document.getElementById('p_price').value;
+            const cutPrice = document.getElementById('p_cut').value;
+            const badge = document.getElementById('p_badge').value;
+            const description = document.getElementById('p_desc').value;
+
+            const newProd = {
+                id, title, category, imageUrl, icon: "fa-solid fa-flask",
+                sub, price, cutPrice, badge, description,
+                variants: [{ id: `${id}_default`, name: sub, sub, desc: description, price, cutPrice }]
+            };
+
+            const { error } = await sb.from('products').upsert({ id: newProd.id, data: newProd });
+            if (error) { alert("Save FAILED: " + error.message); return; }
+
+            products.push(newProd);
+            renderProducts();
+            document.getElementById('addProductForm').reset();
+            alert("Fragrance added successfully!");
+        }
+
+        async function saveFooterSettings(e) {
+            e.preventDefault();
+            if (!sb) { alert("Supabase connect nahi hai."); return; }
+            storeSettings = {
+                email: document.getElementById('admin_email').value,
+                phone: document.getElementById('admin_phone').value,
+                chatLink: document.getElementById('admin_chat_link').value,
+                desc: document.getElementById('admin_desc').value
+            };
+            const { error } = await sb.from('store_settings').upsert({ id: 'main', data: storeSettings });
+            if (error) alert("Error saving settings: " + error.message);
+            else { applyStoreSettingsUI(); alert("Settings updated successfully!"); }
+        }
+
+        function applyStoreSettingsUI() {
+            const set = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+            set('display_email', storeSettings.email);
+            set('display_phone', storeSettings.phone);
+            set('display_desc', storeSettings.desc);
+            const emailLink = document.getElementById('display_email_link');
+            if (emailLink) emailLink.href = `mailto:${storeSettings.email}`;
+            const phoneLink = document.getElementById('display_phone_link');
+            if (phoneLink) phoneLink.href = storeSettings.chatLink;
+        }
+
+        async function uploadModalImageFile() {
+            if (!sb) { alert("Supabase connect nahi hai."); return; }
+            const fileInput = document.getElementById('quick_modal_img_file');
+            const file = fileInput.files[0];
+            if (!file) { alert("Pehle koi image file select karein."); return; }
+            if (!currentModalProductId) { alert("Koi product select nahi hai."); return; }
+
+            const btn = document.getElementById('upload_img_btn');
+            const btnText = document.getElementById('upload_img_btn_text');
+            btn.disabled = true;
+            btnText.textContent = "Uploading...";
+
+            try {
+                const fileExt = file.name.split('.').pop();
+                const filePath = `${currentModalProductId}_${Date.now()}.${fileExt}`;
+                const { error: uploadError } = await sb.storage.from('product-images').upload(filePath, file, { upsert: true });
+                if (uploadError) { alert("Upload FAILED: " + uploadError.message); return; }
+
+                const { data: urlData } = sb.storage.from('product-images').getPublicUrl(filePath);
+                const publicUrl = urlData.publicUrl;
+
+                const p = products.find(prod => prod.id === currentModalProductId);
+                if (!p) return;
+                p.imageUrl = publicUrl;
+
+                const { error: dbError } = await sb.from('products').upsert({ id: p.id, data: p });
+                if (dbError) { alert("Image uploaded, but saving to product FAILED: " + dbError.message); return; }
+
+                renderProducts();
+                openProductModal(p.id);
+                fileInput.value = '';
+                alert("Image uploaded and set successfully!");
+            } catch (e) {
+                alert("Upload exception: " + e.message);
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = "Upload";
+            }
+        }
+
+        async function updateModalImageDirect() {
+            if (!sb) return;
+            const url = document.getElementById('quick_modal_img_url').value.trim();
+            if (!url) { alert("Pehle Image URL field mein koi URL paste karein."); return; }
+            if (!currentModalProductId) { alert("Koi product select nahi hai."); return; }
+
+            const p = products.find(prod => prod.id === currentModalProductId);
+            if (!p) return;
+            p.imageUrl = url;
+            const { error } = await sb.from('products').upsert({ id: p.id, data: p });
+            if (error) { alert("Save FAILED: " + error.message); return; }
+            renderProducts();
+            openProductModal(p.id);
+            alert("Image updated successfully!");
+        }
+
+        async function updateModalPriceDirect() {
+            if (!sb) return;
+            const real = document.getElementById('quick_modal_real_price').value;
+            const cut = document.getElementById('quick_modal_cut_price').value;
+            if (!currentModalProductId) return;
+            const p = products.find(prod => prod.id === currentModalProductId);
+            if (!p) return;
+
+            if (Array.isArray(p.variants) && p.variants.length > 0 && selectedVariantId) {
+                const variant = p.variants.find(v => v.id === selectedVariantId);
+                if (variant) { if (real) variant.price = real; if (cut) variant.cutPrice = cut; }
+                p.price = p.variants[0].price;
+                p.cutPrice = p.variants[0].cutPrice;
+            } else {
+                if (real) p.price = real;
+                if (cut) p.cutPrice = cut;
+            }
+
+            const { error } = await sb.from('products').upsert({ id: p.id, data: p });
+            if (error) { alert("Save FAILED: " + error.message); return; }
+            renderProducts();
+            updatePriceDisplay(real, cut);
+            updateCheckoutLink(p.title);
+            alert("Price updated successfully!");
+        }
+
+        async function updateModalDescriptionDirect() {
+            if (!sb) return;
+            const desc = document.getElementById('quick_modal_desc').value;
+            if (!currentModalProductId) return;
+            const p = products.find(prod => prod.id === currentModalProductId);
+            if (!p) return;
+
+            if (Array.isArray(p.variants) && p.variants.length > 0 && selectedVariantId) {
+                const variant = p.variants.find(v => v.id === selectedVariantId);
+                if (variant) variant.desc = desc;
+            } else {
+                p.description = desc;
+            }
+
+            const { error } = await sb.from('products').upsert({ id: p.id, data: p });
+            if (error) { alert("Save FAILED: " + error.message); return; }
+            renderProducts();
+            document.getElementById('tab-desc-content').innerHTML = formatTextWithLinks(desc);
+            alert("Description updated successfully!");
+        }
+
+        async function addNewVariantToProduct() {
+            if (!sb) return;
+            if (!currentModalProductId) return;
+            const p = products.find(prod => prod.id === currentModalProductId);
+            if (!p) return;
+
+            const name = document.getElementById('v_new_name').value;
+            const sub = document.getElementById('v_new_sub').value;
+            const desc = document.getElementById('v_new_desc').value;
+            const real = document.getElementById('v_new_real').value;
+            const cut = document.getElementById('v_new_cut').value;
+
+            if (!name || !real || !cut) {
+                alert("Please fill in at least the Size Name, Price, and Cut Price fields.");
+                return;
+            }
+            if (!Array.isArray(p.variants)) p.variants = [];
+            p.variants.push({ id: `v_${Date.now()}`, name, sub: sub || p.sub, desc: desc || p.description, price: real, cutPrice: cut });
+
+            const { error } = await sb.from('products').upsert({ id: p.id, data: p });
+            if (error) { alert("Save FAILED: " + error.message); return; }
+
+            renderProducts();
+            openProductModal(p.id);
+            ['v_new_name','v_new_sub','v_new_desc','v_new_real','v_new_cut'].forEach(id => document.getElementById(id).value = '');
+            alert("New size added successfully!");
+        }
+
+        async function removeSelectedVariant() {
+            if (!sb) return;
+            if (!currentModalProductId || !selectedVariantId) return;
+            const p = products.find(prod => prod.id === currentModalProductId);
+            if (!p || !Array.isArray(p.variants)) return;
+            if (p.variants.length <= 1) { alert("Cannot remove the last remaining size."); return; }
+
+            p.variants = p.variants.filter(v => v.id !== selectedVariantId);
+            const { error } = await sb.from('products').upsert({ id: p.id, data: p });
+            if (error) { alert("Save FAILED: " + error.message); return; }
+            renderProducts();
+            openProductModal(p.id);
+            alert("Size removed successfully.");
+        }
+    </script>
+</body>
+</html>
